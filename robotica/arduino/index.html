@@ -92,14 +92,44 @@ microcontrolador mostrejat amb la figura següent</p>
         <td>16 (0-65536)</td>
         <td>0-3,3V</td> 
       </tr>
+         <p> A continuaci´tenim un codi general que pit servir per moltissimies coses diferents i totes relacionades
+        amb la capacitat que té l'arduino de llegir de 0 a 1023 en una entrada analògica, si fos un ESP32-S3
+        llegiria de 0 a 4095 i si fos un ADS1115 legiria de 0 a 65536. Perque?</p>
+        <p>Els microxips i els microcontroladors tenen transistors i els transistors nomes poden fer una cosa encendres o apagarse,
+        Es a dir 0 o 1 i cada bit és un 0 o un 1. Si tenim 10 bits en un ADC (analog digital converter) significa que té
+        2<sup>10</sup> combinacions de 0 i 1 es a dir 1024 nivells diferents que numericament van desde el 0 al 1023</p>
+        <p>Si tenim 12 bits en un ADC (analog digital converter) significa que té
+        2<sup>12</sup> combinacions de 0 i 1 es a dir 4095 nivells diferents que numericament van desde el 0 al 4095. Ara
+        justifiquem el numero 65536 seria correcte s fos 2<sup>16</sup> pero en el datasheet para d'un nivell maxim
+        de 8000h (numero hexadecimal que correspon a 32768) es a dir, són 15 bits utilitzables. Sempre s'ha de comprovar
+        el datasheet  <a href="https://cdn-shop.adafruit.com/datasheets/ads1115.pdf">
+          o fulla de caracteristiques del fabricant</a></p>
       <pre>
         <code>
-          int valorADC=0;
-          voidsetup(){
-          Serial.begun(9600); //9600 en Arduino //115200 en S3
+          int valorADC=0; // Int significa integer o valor enter numèric (Float seria floating point number o decimal, char
+          seria un character o caracter de lletra de l'alfabet, string seria una cadena de caracters o paraula, etc. El més
+          important es que la primera paraula difeneix el tipus de variable que tenim, en aaquest cas enter). "valor_ADC" és
+          un nom que triem nosaltres per definir una variable, es a dir, un valor que no serà constant i que té inicialment
+          un valor 0, si posem int "valor_ADC" es a dir no posem que és = a 0 per defecte hauria de donar valor 0. s jo volgues posar
+          un potenciometra posaria pot i si volgues posar LDR posaria ldr, etc. Sempre la primera linia és la definició de les
+          variables. A vegades avan de la primera linia necessitem carregar bblioteques.
+          voidsetup(){ // Sempreh ha un setup o funció de configuració del microcontrolador en llenguatge arduino que té un
+          parentesis buit perqué no té cao arametre o argument del qual depengui en molts casos. La paraula void seria l'equivalent
+          a la paraula function en JavaScript. També es diu void setup en Processing perquè deriva de processing en llenguatge
+          arduino. Perque posem un parentesis? POsem una clau per agrupar totes les instruccions que volem executar una sola vegada
+          perquè setup s'executa nomes al principi cuan arranquem o encenem l'arduino o microcontrolador.
+          Serial.begun(9600); //9600 en Arduino //115200 en S3 // Seria s''escriu amb mayuscules perquè és una classe que és una part important
+          del codi arduino que antigament era una clase de processing i té un metode que es fa servir amb la sintaxi del punt, dot
+          syntax que sonsisteix en que jo quan escric un punt estic aplicant un mètode normalment a un objecte d'una clase, com aquí.
+          El mètode begin connecta per el cable sèrie l'ordinador amb l'Arduino i té només un parametre que es un numero enter que 
+          correspon a la velocitat en bits/segon. Pel cas de l'Arduino uno 9600/segon o bauds, mentres que en ESP32-S2 són 115200/segon
+          o bauds "Serial.begin8115200);". És molt important posar un ; en cada instrucció
+          per informar que ja ha acabat.
           }
-          void loop(){
-          valorADC=analogRead(AO) //34 en S3
+          void loop(){ // És una funció que repeteix sense parar fins que desconecto isicament o poso un codi per aturar-ho
+          valor_ADC=analogRead(A0); //34 en S3 // La variable que ham creat abans que era 0 inicialment ara canviarà perquè la
+          instucció analogRead el que fa és llegir valors entre 0 i 1023 si és un Arduino uno
+          valor_ADC=analogRead(34);// La variable de valor 0 ara serà un valor entre 0 i 4095 perquè 34 és
           Serial.println(valor ADC); //O-1023 //0-4095
           delay(500);} 
         </code>
