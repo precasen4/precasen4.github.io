@@ -149,12 +149,26 @@ microcontrolador mostrejat amb la figura següent</p>
       <img src="lm35.png">
       <p>Per últim veurem el circuit fisic d'arduino</p>
       <img src="arduino_lm35.png">
-      <p>Hem vist que a 2100milivolts fins a 4350milivolts la resposta de lm35 es lineal i va des de
+      <p>Hem vist que a 2900milivolts fins a 4100milivolts la resposta de lm35 es lineal i va des de
       55sota zero fins a 150 sobre zero. Com ho traduim a codi??</p>
       <p>Primer hem d'entendre que arduino la seva entrada analògica A0 (o qualsevol fins a A5) es capaç de 
       llegir voltatge i sempre comença amb zero i acaba amb 5volts. Com hi ha 1024 nivells diferents
       la resolució és 5000/1024=4,88milivolts es a dir cada nivell augmenta 4,88milivolts. És a dir la resolució
-      en milivolts es 4,88 (5000 son milivolts perque arduinouno funciona amb 5 volts).</p> 
+      en milivolts es 4,88 (5000 son milivolts perque arduinouno funciona amb 5 volts).</p>
+      <p>Com comneçem a mesurar temperaturas entre 2900milivolts i 4100milivolts hem de saber a que correspon 
+      aquests 2 numeros en base 1024, (2900/5000)*1024=594 el nivell respecte 1024 (4100/5000)*1024=840 el nivell 
+      respecte 1024</p>
+      <p>Sabent aixo com sería el mapeig??</p>
+      <pre>
+        <code>
+          int analogValue=analogRead (A0);
+          float volt = analogValue*(5000/1024);
+          float temp = map (analogValue, 0,1023 , -55,150); ÉS INCORRECTE
+          float temp = map (analogValue, 594,840 , -55,150); ÉS CORRECTE
+          //valors de volt des de 0 a 5000 perque 0*5000/1024=0 i 1024*5000/1024=5000
+          //500 analogValue donaría 500*5000/1024=2441 i aquest numero estaría fora d'escala
+        </code>
+      </pre>
       
 </body>
 </html>
