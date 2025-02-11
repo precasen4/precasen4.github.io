@@ -142,5 +142,19 @@ microcontrolador mostrejat amb la figura següent</p>
             Pin d'Entrada i Sortida de Propòsit General, és a dir, que pot tenir moltes utilitats, entrada digital, sortida digital, entrada analògica, 
             sortida analògica. Si volem veure un esquema dels pins podem escriure "pinout".</p>
         <p>Alguns pins són RTC, lo que significa Real Time Clock, que és un rellotge intern que funciona mitjançant una pila </p>
+      <h1>Sensor LM35</h1>
+      <p>És un sensor de temperatura lineal que tè 3 pins com es pot veure a la imatge següent</p>
+      <img src="sensor_lm35.png">
+      <p>A continuació tenim el gràfic de funcionament procedent del full de característiques</p>
+      <img src="lm35.png">
+      <p>Per últim veurem el circuit fisic d'arduino</p>
+      <img src="arduino_lm35.png">
+      <p>Hem vist que a 2100milivolts fins a 4350milivolts la resposta de lm35 es lineal i va des de
+      55sota zero fins a 150 sobre zero. Com ho traduim a codi??</p>
+      <p>Primer hem d'entendre que arduino la seva entrada analògica A0 (o qualsevol fins a A5) es capaç de 
+      llegir voltatge i sempre comença amb zero i acaba amb 5volts. Com hi ha 1024 nivells diferents
+      la resolució és 5000/1024=4,88milivolts es a dir cada nivell augmenta 4,88milivolts. És a dir la resolució
+      en milivolts es 4,88 (5000 son milivolts perque arduinouno funciona amb 5 volts).</p> 
+      
 </body>
 </html>
