@@ -123,18 +123,23 @@ function renderQuiz() {
         .filter(q => (selectedCategory==='tot' || q.category===selectedCategory)
                   && (selectedType==='totes' || q.type===selectedType));
 
+    let questionIndex = 1, exerciseIndex = 1;
+    
     filtered.forEach(q => {
         const div = document.createElement("div");
+        const isExercise = q.type === 'exercicis';
+        const displayIndex = isExercise ? exerciseIndex++ : questionIndex++;
+        
         div.innerHTML = `
-            <p><strong>${q.type==='exercicis'?'Exercici':'Qüestió'} ${q.originalIndex+1}:</strong> ${q.text}</p>
+            <p><strong>${isExercise ? 'Exercici' : 'Qüestió'} ${displayIndex}:</strong> ${q.text}</p>
             ${renderImages(q)}
-            ${generateOptions(q.options,q.originalIndex,q.correctAnswer)}
+            ${generateOptions(q.options, q.originalIndex, q.correctAnswer)}
             <div id="result${q.originalIndex}" class="ocult">
                 <p id="answer${q.originalIndex}"></p>
-                <p><strong>Solució pas a pas:</strong></p>
+                ${q.steps ? '<p><strong>Solució pas a pas:</strong></p>' : ''}
                 <p id="steps${q.originalIndex}">${q.steps || ''}</p>
             </div>
-            ${q.type==='exercicis'?`<button class="solution-button" onclick="toggleSolution(${q.originalIndex},this)">Mostra solució</button>`:''}
+            ${isExercise ? `<button class="solution-button" onclick="toggleSolution(${q.originalIndex},this)">Mostra solució</button>` : ''}
         `;
         quizContainer.appendChild(div);
     });
