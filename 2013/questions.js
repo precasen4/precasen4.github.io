@@ -222,38 +222,18 @@ Si les resistències passives es consideren negligibles i el vehicle puja a velo
         category: "energia",
         text: `
         <h6>Opció B</h6>
-        <p>
-                <img src="Exercici3b.png" alt="Imatge relacionada amb la resposta">
-</p>
+       
 <p>
-La plataforma elevadora de tisora de la figura s’utilitza per a elevar un vehicle de massa
-m = 1 500 kg mitjançant l’acció de dos cilindres hidràulics que actuen en paraŀlel. Els cilindres
-tenen un diàmetre interior d<sub>int</sub> = 100 mm i el diàmetre de la tija és d<sub>tija</sub> = 62 mm.
-</p>
-
-<p>
-La plataforma funciona per a valors 0 mm &lt; h &lt; 1 150 mm i, per a aquest rang de funcionament,
-la relació entre la velocitat d’allargament del cilindre, v<sub>cil</sub>, i la velocitat d’elevació del vehicle,
-v<sub>veh</sub>, és aproximadament:
+L’eixugaparabrises d’un vehicle està accionat per un motor reductor de rendiment global
+η<sub>tot</sub> = 0,36. El motor reductor està format per un motor elèctric de rendiment η<sub>mot</sub> = 0,86 i un
+reductor de vis sens fi de relació de transmissió τ = ω<sub>s</sub>/ω<sub>e</sub> = 1/36. El motor s’alimenta amb una tensió U = 12 V i, en règim de funcionament nominal, 
+consumeix una intensitat I = 2,2 A quan l’eix de sortida del reductor gira a n<sub>s</sub> = 29,2 min<sup>–1</sup>. Determineu:
 </p>
 
 <p>
-<img src="Exercici3b_ajut2.png"> amb h en mm.
-</p>
-
-<p>
-<strong> a)</strong>  Dibuixeu, de manera aproximada i indicant les escales, la relació v<sub>cil</sub>/v<sub>veh</sub> en funció de
-h per a 0 mm &lt; h &lt; 1 150 mm. [1 punt]
-</p>
-
-<p>
-Si les resistències passives es consideren negligibles i el vehicle puja a velocitat constant,
-<strong>determineu, quan h = 800 mm:</strong>
-</p>
-
-<p>
-<strong> b) </strong> La força, F<sub>cil</sub>, que fa el conjunt dels dos cilindres. [1 punt]<br>
-<strong> c) </strong> La pressió relativa, p<sub>int</sub>, a l’interior dels cilindres. [0,5 punts]
+<strong> a)</strong>  La potència, P<sub>motor</sub>, i el parell, Γ<sub>motor</sub>, a l’eix de sortida del motor. [1 punt]<br>
+<strong> b) </strong> La potència, P<sub>sortida</sub>, i el parell, Γ<sub>sortida</sub>, a l’eix de sortida del reductor. [1 punt]<br>
+<strong> c) </strong> El rendiment, η<sub>red</sub>, del reductor.  [0,5 punts]
 </p>
 
                `, 
