@@ -123,14 +123,16 @@ function renderQuiz() {
         .filter(q => (selectedCategory==='tot' || q.category===selectedCategory)
                   && (selectedType==='totes' || q.type===selectedType));
 
-    let questionIndex = 1, exerciseIndex = 1;
+    let questionIndex = 1, exerciseIndex = 2, examenIndex = 1, contpregs = 0;
     
     filtered.forEach(q => {
         const div = document.createElement("div");
         const isExercise = q.type === 'exercicis';
+        contpregs++;
+        if(contpregs === 11 || contpregs === 1) div.innerHTML = `<h2> Examen de Tecnologia i Enginyeria ${examenIndex++} </h2>`,exerciseIndex = 2, questionIndex = 1;
         const displayIndex = isExercise ? exerciseIndex++ : questionIndex++;
-        
-        div.innerHTML = `
+        if(exerciseIndex > 4) exerciseIndex = 3;
+        div.innerHTML += `
             <p><strong>${isExercise ? 'Exercici' : 'Qüestió'} ${displayIndex}:</strong> ${q.text}</p>
             ${renderImages(q)}
             ${generateOptions(q.options, q.originalIndex, q.correctAnswer)}
